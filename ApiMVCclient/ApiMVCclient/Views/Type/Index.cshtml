@@ -1,0 +1,54 @@
+﻿@using ApiMVCclient.Models;
+@model List<MovieType>
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <title></title>
+    <link href="~/twitter-bootstrap/css/
+bootstrap.css" rel="stylesheet" />
+
+    <link href="~/twitter-bootstrap/css/
+bootstrap-grid.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-2">
+        <div class="bg-dark text-white-50 lead text-center
+my-2 p-2">
+            Film Türleri  Listesi
+        </div>
+        <div class=" text-right pr-2 my-2">
+            @* @Html.ActionLink("Add","Sporcular",null,new{@class="btn btn-striped"})*@
+            <a asp-action="Add"
+               asp-controller="Type"
+               class="btn btn-primary btn-sm">Ekle</a>
+        </div>
+        <table class="table table-hover table-striped
+table-bordered table-sm">
+            @foreach (var type in Model)
+            {
+
+                    <tr>
+                        <td>@type.TypeID</td>
+                        <td>@type.TypeName</td>
+                        <td>@type.DirectorID</td>
+
+                        <th>İşlem</th>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Type"
+                       asp-route-id="@type.TypeID" class="btn btn-warning btn-sm">Edit</a>
+                            <a onclick="return confirm('Silmek isteğinizden
+   emin misiniz?')"
+                       asp-action="Delete" asp-controller="Type"
+                       asp-route-id="@type.TypeID"
+                       class="btn btn-danger btn-sm">Delete</a>
+
+                        </td>
+                    </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>
